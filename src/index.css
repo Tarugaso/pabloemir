@@ -1,0 +1,613 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Simple, high-contrast color variables */
+    --background: 248 250 252; /* #f8fafc - Very light gray */
+    --foreground: 30 41 59; /* #1e293b - Dark gray */
+    --card: 255 255 255; /* #ffffff - Pure white */
+    --card-foreground: 30 41 59; /* #1e293b - Dark gray */
+    --popover: 255 255 255; /* #ffffff - Pure white */
+    --popover-foreground: 30 41 59; /* #1e293b - Dark gray */
+    --primary: 59 130 246; /* #3b82f6 - Blue */
+    --primary-foreground: 255 255 255; /* #ffffff - White */
+    --secondary: 107 114 128; /* #6b7280 - Gray */
+    --secondary-foreground: 255 255 255; /* #ffffff - White */
+    --muted: 241 245 249; /* #f1f5f9 - Light gray */
+    --muted-foreground: 100 116 139; /* #64748b - Medium gray */
+    --accent: 241 245 249; /* #f1f5f9 - Light gray */
+    --accent-foreground: 30 41 59; /* #1e293b - Dark gray */
+    --destructive: 239 68 68; /* #ef4444 - Red */
+    --destructive-foreground: 255 255 255; /* #ffffff - White */
+    --border: 226 232 240; /* #e2e8f0 - Light gray */
+    --input: 255 255 255; /* #ffffff - White */
+    --ring: 59 130 246; /* #3b82f6 - Blue for focus */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Responsive breakpoints */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-large: 1200px;
+
+  /* Responsive spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Touch-friendly sizes */
+  --touch-target-min: 44px;
+  --button-height-sm: 36px;
+  --button-height-md: 44px;
+  --button-height-lg: 52px;
+
+  /* Container sizes */
+  --container-max-width: 1200px;
+  --container-padding: 1rem;
+  --container-padding-mobile: 0.75rem;
+
+  /* Font sizes responsive */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Improve text rendering on mobile */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* Simple, clean background */
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* Base button styles - will be overridden by .btn class */
+button {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  color: #213547;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    background-color: #1a1a1a;
+    color: white;
+  }
+}
+
+/* Custom styles for the expense calculator */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive container */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--container-padding-mobile);
+  }
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #212529;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: #1a1a1a;
+    color: white;
+  }
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: #212529;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: var(--font-size-base);
+  min-height: var(--touch-target-min);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #ffffff;
+  color: #212529;
+}
+
+/* Better focus states for accessibility */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #dc143c;
+  box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: #2a2a2a;
+    border-color: #444;
+    color: white;
+  }
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly button sizes */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: var(--font-size-sm);
+  min-height: var(--button-height-sm);
+}
+
+.btn-lg {
+  padding: 16px 32px;
+  font-size: var(--font-size-lg);
+  min-height: var(--button-height-lg);
+}
+
+.btn-primary {
+  background: #dc143c;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #b71c1c;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #218838;
+}
+
+.balance-positive {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.balance-negative {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.balance-zero {
+  color: #6c757d;
+  font-weight: bold;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--container-padding-mobile);
+  }
+
+  .card {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  /* Larger buttons on mobile */
+  .btn {
+    padding: 14px 20px;
+    font-size: var(--font-size-base);
+    min-height: 48px;
+  }
+
+  .btn-sm {
+    padding: 10px 16px;
+    min-height: var(--touch-target-min);
+  }
+
+  /* Better form spacing on mobile */
+  .form-group {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 16px;
+    font-size: var(--font-size-base);
+  }
+
+  /* Improved mobile grid layouts */
+  .grid-responsive {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Better mobile card layouts */
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Improved mobile text sizes */
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .card {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Even larger touch targets on small screens */
+  .btn {
+    padding: 16px 20px;
+    min-height: 52px;
+    font-size: var(--font-size-lg);
+  }
+
+  .btn-sm {
+    padding: 12px 16px;
+    min-height: 48px;
+  }
+
+  /* Ultra-mobile optimizations */
+  .mobile-full-width {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Compact spacing for small screens */
+  .space-compact > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  /* Better mobile typography */
+  .text-responsive {
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* Additional accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 2px solid currentColor;
+  }
+
+  .checkbox-item,
+  .radio-item {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Focus improvements for keyboard navigation */
+.btn:focus-visible,
+.tab-button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #dc143c;
+  outline-offset: 2px;
+}
+
+/* Improve text selection */
+::selection {
+  background-color: #dc143c;
+  color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Simple, clean styles for better readability */
+
+/* Clean card styles */
+.simple-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.simple-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+/* Clean button styles */
+.simple-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.simple-button:hover {
+  background: #2563eb;
+}
+
+.simple-button-secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.simple-button-secondary:hover {
+  background: #4b5563;
+}
+
+.simple-button-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.simple-button-danger:hover {
+  background: #dc2626;
+}
+
+/* Clean input styles */
+.simple-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+  color: #1f2937;
+}
+
+.simple-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Section headers */
+.section-header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Clean layout */
+.clean-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.clean-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .clean-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .clean-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Clean text styles */
+.text-primary {
+  color: #1f2937;
+}
+
+.text-secondary {
+  color: #6b7280;
+}
+
+.text-success {
+  color: #059669;
+}
+
+.text-danger {
+  color: #dc2626;
+}
+
+.text-warning {
+  color: #d97706;
+}
+
+/* Clean badges */
+.simple-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-info {
+  background: #dbeafe;
+  color: #1e40af;
+}
