@@ -195,7 +195,7 @@ const TransferAliasManager = ({ participants, onUpdateParticipant }) => {
               No hay participantes agregados
             </div>
             <div className="text-muted-foreground">
-              Agrega participantes en la pestaña "Participantes" para gestionar sus datos bancarios
+              Agrega participantes en la pestaña &quot;Participantes&quot; para gestionar sus datos bancarios
             </div>
           </CardContent>
         </Card>
